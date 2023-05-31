@@ -1453,7 +1453,7 @@ available_amount =
 selectFrom(shop_products).
 where(shop_products.point_of_sale.eq("Арбат").
 and(shop_products.id.eq(product_bought))).
-uniqueResult(shop_products.available);
+uniqueResult(false, shop_products.available);
 
 any_product_sold = false;
 
@@ -1465,7 +1465,7 @@ if (available_amount > 0) {
 	where(shop_products.point_of_sale.eq("Арбат").
 	and(shop_products.id.eq(product_bought)).
 	and(shop_products.available.eq(available_amount))).
-	set(shop_products.available, shop_products.maximum).
+	set(shop_products.available, amount_to).
 	execute();
 } else {
 	any_product_sold = false;
@@ -1474,7 +1474,7 @@ if (available_amount > 0) {
 available_amount_after = selectFrom(shop_products).
 	where(shop_products.point_of_sale.eq("Арбат")).
 	where(shop_products.id.eq(product_bought)).
-	uniqueResult(shop_products.available);
+	uniqueResult(false, shop_products.available);
 ]]></Code>
 							</Value>
 						</Parameter>
@@ -1637,31 +1637,25 @@ available_amount_after = selectFrom(shop_products).
 						<Parameter>
 							<Name><![CDATA[probability1]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[1]]></Code>
+								<Code><![CDATA[0.4]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability2]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability3]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
-							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability4]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[0.1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability5]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[0.1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -1933,6 +1927,37 @@ available_amount_after = selectFrom(shop_products).
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[product_bought = random_product();
+
+available_amount = 
+selectFrom(shop_products).
+where(shop_products.point_of_sale.eq("Тушино").
+and(shop_products.id.eq(product_bought))).
+uniqueResult(false, shop_products.available);
+
+any_product_sold = false;
+
+amount_to = available_amount - 1;
+
+if (available_amount > 0) {
+	any_product_sold = true;
+	update(shop_products).
+	where(shop_products.point_of_sale.eq("Тушино").
+	and(shop_products.id.eq(product_bought)).
+	and(shop_products.available.eq(available_amount))).
+	set(shop_products.available, amount_to).
+	execute();
+} else {
+	any_product_sold = false;
+}
+
+available_amount_after = selectFrom(shop_products).
+	where(shop_products.point_of_sale.eq("Тушино")).
+	where(shop_products.id.eq(product_bought)).
+	uniqueResult(false, shop_products.available);
+]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExit]]></Name>
@@ -2257,6 +2282,37 @@ available_amount_after = selectFrom(shop_products).
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[product_bought = random_product();
+
+available_amount = 
+selectFrom(shop_products).
+where(shop_products.point_of_sale.eq("Бутово").
+and(shop_products.id.eq(product_bought))).
+uniqueResult(false, shop_products.available);
+
+any_product_sold = false;
+
+amount_to = available_amount - 1;
+
+if (available_amount > 0) {
+	any_product_sold = true;
+	update(shop_products).
+	where(shop_products.point_of_sale.eq("Бутово").
+	and(shop_products.id.eq(product_bought)).
+	and(shop_products.available.eq(available_amount))).
+	set(shop_products.available, amount_to).
+	execute();
+} else {
+	any_product_sold = false;
+}
+
+available_amount_after = selectFrom(shop_products).
+	where(shop_products.point_of_sale.eq("Бутово")).
+	where(shop_products.id.eq(product_bought)).
+	uniqueResult(false, shop_products.available);
+]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExit]]></Name>
@@ -2581,6 +2637,37 @@ available_amount_after = selectFrom(shop_products).
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[product_bought = random_product();
+
+available_amount = 
+selectFrom(shop_products).
+where(shop_products.point_of_sale.eq("Жулебино").
+and(shop_products.id.eq(product_bought))).
+uniqueResult(false, shop_products.available);
+
+any_product_sold = false;
+
+amount_to = available_amount - 1;
+
+if (available_amount > 0) {
+	any_product_sold = true;
+	update(shop_products).
+	where(shop_products.point_of_sale.eq("Жулебино").
+	and(shop_products.id.eq(product_bought)).
+	and(shop_products.available.eq(available_amount))).
+	set(shop_products.available, amount_to).
+	execute();
+} else {
+	any_product_sold = false;
+}
+
+available_amount_after = selectFrom(shop_products).
+	where(shop_products.point_of_sale.eq("Жулебино")).
+	where(shop_products.id.eq(product_bought)).
+	uniqueResult(false, shop_products.available);
+]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExit]]></Name>
@@ -2905,6 +2992,37 @@ available_amount_after = selectFrom(shop_products).
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onEnter]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[product_bought = random_product();
+
+available_amount = 
+selectFrom(shop_products).
+where(shop_products.point_of_sale.eq("Выхино").
+and(shop_products.id.eq(product_bought))).
+uniqueResult(false, shop_products.available);
+
+any_product_sold = false;
+
+amount_to = available_amount - 1;
+
+if (available_amount > 0) {
+	any_product_sold = true;
+	update(shop_products).
+	where(shop_products.point_of_sale.eq("Выхино").
+	and(shop_products.id.eq(product_bought)).
+	and(shop_products.available.eq(available_amount))).
+	set(shop_products.available, amount_to).
+	execute();
+} else {
+	any_product_sold = false;
+}
+
+available_amount_after = selectFrom(shop_products).
+	where(shop_products.point_of_sale.eq("Выхино")).
+	where(shop_products.id.eq(product_bought)).
+	uniqueResult(false, shop_products.available);
+]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onAtExit]]></Name>
@@ -3218,25 +3336,25 @@ available_amount_after = selectFrom(shop_products).
 						<Parameter>
 							<Name><![CDATA[probability2]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability3]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability4]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[probability5]]></Name>
 							<Value Class="CodeValue">
-								<Code><![CDATA[0]]></Code>
+								<Code><![CDATA[1]]></Code>
 							</Value>
 						</Parameter>
 						<Parameter>
@@ -3256,15 +3374,39 @@ execute();]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit2]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[update(shop_products).
+where(shop_products.point_of_sale.eq("Тушино")).
+set(shop_products.available, shop_products.maximum).
+execute();]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit3]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[update(shop_products).
+where(shop_products.point_of_sale.eq("Бутово")).
+set(shop_products.available, shop_products.maximum).
+execute();]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit4]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[update(shop_products).
+where(shop_products.point_of_sale.eq("Жулебино")).
+set(shop_products.available, shop_products.maximum).
+execute();]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[onExit5]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[update(shop_products).
+where(shop_products.point_of_sale.eq("Выхино")).
+set(shop_products.available, shop_products.maximum).
+execute();]]></Code>
+							</Value>
 						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
@@ -3368,9 +3510,15 @@ execute();]]></Code>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[multipleEntitiesPerArrival]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[true]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[entitiesPerArrival]]></Name>
+							<Value Class="CodeValue">
+								<Code><![CDATA[5]]></Code>
+							</Value>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[limitArrivals]]></Name>
